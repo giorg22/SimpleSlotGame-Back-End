@@ -4,14 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Application.Models;
 using Domain.Entities;
 using Application.Shared;
 using System.Diagnostics.Contracts;
 using static Application.Shared.ReponseExtensions;
 using Mapster;
+using Application.Slots.Interfaces;
+using Application.Slots.Models;
+using Application.Slots.Responses;
 
-namespace Application.Services
+namespace Application.Slots.Services
 {
     public class SlotService : ISlotService
     {
@@ -31,7 +33,7 @@ namespace Application.Services
 
         public async Task<Response<SpinResultResponse>> Spin(string userId, decimal betAmount)
         {
-            if(betAmount <= 0)
+            if (betAmount <= 0)
             {
                 return Fail<SpinResultResponse>(ErrorCode.NonPositiveBetAmount, "Bet amount should be positive");
             }

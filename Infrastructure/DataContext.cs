@@ -12,11 +12,6 @@ namespace Infrastructure
     {
         public DataContext() { }
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseNpgsql("Host=localhost; Database=SlotGameDB; Username=postgres; Password=rootpassword");
-        }
         public DbSet<User> Users { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<SpinResult> SpinResults { get; set; }

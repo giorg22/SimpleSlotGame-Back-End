@@ -2,8 +2,8 @@
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Application.Models;
 using Application.Shared;
+using Application.Slots.Responses;
 using Domain.Entities;
 using Microsoft.AspNetCore.SignalR.Client;
 

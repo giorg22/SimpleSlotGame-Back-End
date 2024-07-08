@@ -1,6 +1,8 @@
-using API;
-using Application.Services;
-using Application.User;
+using API.SignalR;
+using Application.Slots.Interfaces;
+using Application.Slots.Services;
+using Application.Users.Interfaces;
+using Application.Users.Services;
 using Domain.Base;
 using Domain.Repositories;
 using Infrastructure;

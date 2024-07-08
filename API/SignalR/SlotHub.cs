@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using Domain.Entities;
-using Application.Services;
 using Application.Shared;
-using Application.Models;
+using Application.Slots.Interfaces;
+using Application.Slots.Responses;
 
-namespace API
+namespace API.SignalR
 {
     public class SlotHub : Hub
     {

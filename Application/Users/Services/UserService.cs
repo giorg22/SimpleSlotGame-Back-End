@@ -7,8 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using static Application.Shared.ReponseExtensions;
 using Domain.Entities;
+using Application.Users.Interfaces;
 
-namespace Application.User
+namespace Application.Users.Services
 {
     public class UserService : IUserService
     {
@@ -21,7 +22,7 @@ namespace Application.User
         public async Task<Response<string>> Login(string username)
         {
             var user = await _userRepository.GetByUsername(username);
-            if(user != null)
+            if (user != null)
             {
                 return Ok(user.Id);
             }

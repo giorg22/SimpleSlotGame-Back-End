@@ -1,12 +1,12 @@
-﻿using Application.Models;
-using Application.Shared;
+﻿using Application.Shared;
+using Application.Slots.Responses;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Services
+namespace Application.Slots.Interfaces
 {
     public interface ISlotService
     {

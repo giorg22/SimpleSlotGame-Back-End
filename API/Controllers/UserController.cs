@@ -1,5 +1,5 @@
 ﻿using Application.Shared;
-using Application.User;
+using Application.Users.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
