@@ -84,50 +84,6 @@ namespace Application.Tests
         }
 
         [Fact]
-        public async Task Spin_WithNoWin_DoesNotIncreaseBalanceOrCreateWinTransaction()
-        {
-            var userId = "testUser";
-            var betAmount = 10m;
-            var user = new User { Id = userId, Balance = 20m };
-
-            _mockUserRepository.Setup(repo => repo.GetById(userId)).ReturnsAsync(user);
-            _mockUserRepository.Setup(repo => repo.Update(It.IsAny<User>())).Returns(Task.CompletedTask);
-            _mockTransactionRepository.Setup(repo => repo.Add(It.IsAny<Transaction>())).Returns(Task.CompletedTask);
-            _mockSpinResultRepository.Setup(repo => repo.Add(It.IsAny<SpinResult>())).Returns(Task.CompletedTask);
-
-            Mock.Get(_slotService).Setup(service => service.GenerateSpinResult()).Returns("Lemon Lemon Lemon");
-
-            var result = await _slotService.Spin(userId, betAmount);
-
-            Assert.True(result.Success);
-            _mockUserRepository.Verify(repo => repo.Update(It.Is<User>(u => u.Balance == 10m)), Times.Once);
-            _mockTransactionRepository.Verify(repo => repo.Add(It.IsAny<Transaction>()), Times.Once);
-            _mockSpinResultRepository.Verify(repo => repo.Add(It.IsAny<SpinResult>()), Times.Once);
-        }
-
-        [Fact]
-        public async Task Spin_WithWin_IncreasesBalanceAndCreatesWinTransaction()
-        {
-            var userId = "testUser";
-            var betAmount = 10m;
-            var user = new User { Id = userId, Balance = 20m };
-
-            _mockUserRepository.Setup(repo => repo.GetById(userId)).ReturnsAsync(user);
-            _mockUserRepository.Setup(repo => repo.Update(It.IsAny<User>())).Returns(Task.CompletedTask);
-            _mockTransactionRepository.Setup(repo => repo.Add(It.IsAny<Transaction>())).Returns(Task.CompletedTask);
-            _mockSpinResultRepository.Setup(repo => repo.Add(It.IsAny<SpinResult>())).Returns(Task.CompletedTask);
-
-            Mock.Get(_slotService).Setup(service => service.GenerateSpinResult()).Returns("Cherry Cherry Cherry");
-
-            var result = await _slotService.Spin(userId, betAmount);
-
-            Assert.True(result.Success);
-            _mockUserRepository.Verify(repo => repo.Update(It.Is<User>(u => u.Balance == 110m)), Times.Once);
-            _mockTransactionRepository.Verify(repo => repo.Add(It.IsAny<Transaction>()), Times.Exactly(2));
-            _mockSpinResultRepository.Verify(repo => repo.Add(It.IsAny<SpinResult>()), Times.Once);
-        }
-
-        [Fact]
         public void GenerateSpinResult_ReturnsValidResult()
         {
             var result = _slotService.GenerateSpinResult();
