@@ -16,11 +16,10 @@ namespace Infrastructure.Base
             _context = context;
         }
 
-        public virtual async Task<string> Add(T entity)
+        public virtual async Task Add(T entity)
         {
             await _context.AddAsync(entity);
             await _context.SaveChangesAsync();
-            return entity.Id;
         }
 
         public async Task AddRange(IEnumerable<T> entities)

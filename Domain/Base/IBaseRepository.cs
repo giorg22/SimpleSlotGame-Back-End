@@ -10,7 +10,7 @@ namespace Domain.Base
     {
         Task<T> GetById(string id);
         Task<IEnumerable<T>> GetAll();
-        Task<string> Add(T entity);
+        Task Add(T entity);
         Task Update(T entity);
         Task Delete(T entity);
         Task AddRange(IEnumerable<T> entities);

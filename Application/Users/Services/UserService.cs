@@ -32,9 +32,10 @@ namespace Application.Users.Services
                 Username = username,
                 Balance = 10000
             };
-            var id = await _userRepository.Add(newUser);
+            
+            await _userRepository.Add(newUser);
 
-            return Ok(id);
+            return Ok(newUser.Id);
         }
     }
 }
